@@ -105,7 +105,7 @@ class HelloWorld {
 	// --------------------- Application Logic goes here ---------------------
 
 		// Retrieving the Data.
-		// phaseOne();
+		phaseOne();
 		
 		// Statistical Analysis.
 		phaseTwo();
