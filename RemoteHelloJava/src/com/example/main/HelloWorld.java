@@ -1,8 +1,8 @@
 package com.example.main;
 
-
 import java.io.File;
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 import com.example.misc.StatisticsCalculator;
 import com.example.misc.TextFormatter;
@@ -57,8 +57,12 @@ class HelloWorld {
 		// Remove the header since it is irrelevant.
 		strArrList.remove(0);
 
-		// Extract each string line from the strings ArrayList.
-		for(String str : strArrList) {
+		// Extract each string line from the strings ArrayList using List Iterator.
+		ListIterator<String> listIterator = strArrList.listIterator();
+		while(listIterator.hasNext()) {
+			// Move internally to the next item within the iterator and the collection and return a reference to the object.
+			String str = listIterator.next();
+			
 			// Extract from the given text values at position 3 and position 14.
 			// In this case, we need Columns at Index = {3, 14}.
 			statsArrList = txtFormat.extractText(str, 3, 14);
@@ -69,11 +73,13 @@ class HelloWorld {
 				printMessage("Wind Speed = " + ws.getWindSpeed());
 				
 				// Attempt to insert to statistics to database.
-				if (wStat.insertWeatherStat( txtFormat.formatDate(ws.getStatDate()), ws.getWindSpeed())) {
-					printMessage("Record inserted at ID = " + wStat.getMaxID());
-				}
+				// TODO: Uncomment the statement below to insert statistics to database.
+//				if (wStat.insertWeatherStat( txtFormat.formatDate(ws.getStatDate()), ws.getWindSpeed())) {
+//					printMessage("Record inserted at ID = " + wStat.getMaxID());
+//				}
 			}
 		}
+
 		
 		printMessage("Number of Objects = " + String.valueOf(wStat.numberOfObjects()));
     }
